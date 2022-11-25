@@ -54,7 +54,11 @@
   color: white;
 }
 
-body {
+.darkBackground {
+  background: var(--home-bg-color);
+}
+
+.footer {
   background: var(--home-bg-color);
 }
 

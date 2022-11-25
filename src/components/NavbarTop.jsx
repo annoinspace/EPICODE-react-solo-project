@@ -6,7 +6,7 @@ import userprofile from "../assets/avatar.png"
 function NavbarTop() {
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar className="darkBackground">
         <Container>
           <Image src={netflix_logo} id="logo" />
           <Nav className="me-auto">
@@ -23,15 +23,7 @@ function NavbarTop() {
             </div>
             <NavDropdown
               className="dropdown-menu-left mr-1"
-              title={
-                <Image
-                  className="thumbnail-image"
-                  src={userprofile}
-                  width="32"
-                  alt="user pic"
-                />
-              }
-              id="basic-nav-dropdown"
+              title={<Image src={userprofile} width="32" alt="user pic" />}
             >
               <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Settings</NavDropdown.Item>
