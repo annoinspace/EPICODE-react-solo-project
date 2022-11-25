@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -56,6 +57,11 @@
 
 .darkBackground {
   background: var(--home-bg-color);
+}
+
+#mainSection {
+  min-height: 60vh;
+  color: white;
 }
 
 .footer {

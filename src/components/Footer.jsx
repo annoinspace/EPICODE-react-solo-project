@@ -1,5 +1,3 @@
-import { Button } from "react-bootstrap"
-
 function Footer() {
   return (
     <footer className="text-white-50 footer">
