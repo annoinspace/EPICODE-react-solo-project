@@ -1,9 +1,10 @@
 import { Component } from "react"
-import { Row, Col, Image, Carousel } from "react-bootstrap"
+import { Row, Col, Image, Carousel, Spinner } from "react-bootstrap"
 
 class MovieDisplay extends Component {
   state = {
-    movies: []
+    movies: [],
+    isLoading: true
   }
 
   getMovies = async () => {
@@ -17,12 +18,18 @@ class MovieDisplay extends Component {
         console.log("---------------logging the Search object---------------")
         console.log(r.Search)
         let movieList = r.Search
-        this.setState({ movies: movieList })
+        this.setState({ movies: movieList, isLoading: false })
       } else {
         console.log("something went wrong")
+        setTimeout(() => {
+          this.setState({
+            isLoading: false
+          })
+        }, 1000)
       }
     } catch (error) {
       console.log(error)
+      this.setState({ isLoading: false })
     }
   }
 
@@ -51,10 +58,22 @@ class MovieDisplay extends Component {
   render() {
     return (
       <div className="movie-gallery m-2">
+        {this.state.isLoading && (
+          <Spinner animation="grow" variant="primary">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        )}
         <Carousel indicators={false}>
-          <h5 className="text-light mt-2 mb-2">{this.props.series}</h5>
+          <h5 className="text-light mt-2 mb-2 text-left">
+            {this.props.series}
+          </h5>
           {this.movieChunks(this.state.movies, 7).map((moviesRow, index) => (
             <Carousel.Item key={`carousel-${index}`}>
+              {this.state.isLoading && (
+                <Spinner animation="grow" variant="primary">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              )}
               <div className="active d-flex inline">
                 <div className="movie-row">
                   <Row>
