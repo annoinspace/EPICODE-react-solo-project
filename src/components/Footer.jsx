@@ -99,8 +99,7 @@ function Footer() {
         <div className="container mt-3">
           <div className="row row-cols-2">
             <div className="col">
-              {" "}
-              <small> © 1907-2019 Netflix,Inc.0d00fcda2fdf9c0de</small>
+              <small> ©2022 Netflix, Inc.</small>
             </div>
           </div>
         </div>
