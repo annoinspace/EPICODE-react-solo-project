@@ -9,7 +9,7 @@ class MovieDisplay extends Component {
   getMovies = async () => {
     try {
       let response = await fetch(
-        "http://www.omdbapi.com/?apikey=265027af&s=harry%20potter"
+        `http://www.omdbapi.com/?apikey=265027af&s=${this.props.series}`
       )
       if (response.ok) {
         let r = await response.json()
@@ -51,8 +51,8 @@ class MovieDisplay extends Component {
   render() {
     return (
       <div className="movie-gallery m-2">
-        <h5 className="text-light mt-2 mb-2">header</h5>
-        <Carousel>
+        <Carousel indicators={false}>
+          <h5 className="text-light mt-2 mb-2">{this.props.series}</h5>
           {this.movieChunks(this.state.movies, 6).map((moviesRow, index) => (
             <Carousel.Item key={`carousel-${index}`}>
               <div className="active d-flex inline">

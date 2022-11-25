@@ -8,7 +8,9 @@ class MainSection extends Component {
   render() {
     return (
       <Container id="mainSection">
-        <MovieDisplay />
+        <MovieDisplay series="Harry Potter" />
+        <MovieDisplay series="The Good Detective" />
+        <MovieDisplay series="Harry Potter" />
       </Container>
     )
   }
