@@ -1,5 +1,5 @@
 import { Component } from "react"
-import { Container } from "react-bootstrap"
+
 import MovieDisplay from "./MovieDisplay.jsx"
 
 class MainSection extends Component {
@@ -7,11 +7,11 @@ class MainSection extends Component {
 
   render() {
     return (
-      <Container id="mainSection">
+      <div id="mainSection" className="container-fluid">
         <MovieDisplay series="Harry Potter" />
-        <MovieDisplay series="The Good Detective" />
-        <MovieDisplay series="Harry Potter" />
-      </Container>
+        <MovieDisplay series="X-Men" />
+        <MovieDisplay series="Rocky" />
+      </div>
     )
   }
 }

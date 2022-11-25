@@ -53,7 +53,7 @@ class MovieDisplay extends Component {
       <div className="movie-gallery m-2">
         <Carousel indicators={false}>
           <h5 className="text-light mt-2 mb-2">{this.props.series}</h5>
-          {this.movieChunks(this.state.movies, 6).map((moviesRow, index) => (
+          {this.movieChunks(this.state.movies, 7).map((moviesRow, index) => (
             <Carousel.Item key={`carousel-${index}`}>
               <div className="active d-flex inline">
                 <div className="movie-row">
