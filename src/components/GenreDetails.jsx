@@ -2,7 +2,7 @@ function GenreDetails() {
   return (
     <div className="genre-details">
       <div className="d-flex">
-        <h3 className="text-light">TV Shows</h3>
+        <h3 className="text-light">Movies</h3>
         <button className="btn btn-outline-light dropdown-toggle genre-button">
           Genres
         </button>
