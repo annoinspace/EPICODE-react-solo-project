@@ -1,22 +1,36 @@
 import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap"
-
+import { Link, useLocation } from "react-router-dom"
 import netflix_logo from "../assets/netflix_logo.png"
 import userprofile from "../assets/avatar.png"
 
 function NavbarTop() {
+  const location = useLocation()
   return (
     <>
       <Navbar className="darkBackground">
+        <Link to="/tvshows">Test shows</Link>
         <Container>
-          <Image src={netflix_logo} id="logo" />
+          <Link to="/">
+            <Image src={netflix_logo} id="logo" />
+          </Link>
           <Nav className="me-auto">
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-white">
-                <li className="nav-item mr-2">Tv Shows</li>
-                <li className="nav-item mr-2">Movies</li>
+                <li
+                  className={
+                    location.pathname === "/tvshows"
+                      ? "nav-link mr-2 active"
+                      : "nav-link mr-2"
+                  }
+                >
+                  something else
+                </li>
+                <Link to="/">
+                  <li className="nav-item mr-2">Movies</li>
+                </Link>
                 <li className="nav-item mr-2">Recently Added</li>
                 <li className="nav-item mr-2">My List</li>
               </ul>

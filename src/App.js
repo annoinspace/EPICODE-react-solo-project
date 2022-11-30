@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Container } from "react-bootstrap"
 
 import NetflixNavbar from "./components/NetflixNavbar"
-import GenreDetails from "./components/GenreDetails"
+
 import Footer from "./components/Footer"
 import MainSection from "./components/MainSection"
+import TVShows from "./components/TVShows"
 
 function App() {
   return (
@@ -14,9 +15,9 @@ function App() {
       <div className="App darkBackground">
         <NetflixNavbar />
         <Container>
-          <GenreDetails />
           <Routes>
             <Route element={<MainSection />} path="/" />
+            <Route element={<TVShows />} path="/tvshows" />
           </Routes>
         </Container>
         <Footer />

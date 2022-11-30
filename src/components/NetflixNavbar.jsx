@@ -1,12 +1,14 @@
 import { Nav, Image, NavDropdown } from "react-bootstrap"
 import netflix_logo from "../assets/netflix_logo.png"
 import userprofileimage from "../assets/avatar.png"
+import { Link, useLocation } from "react-router-dom"
 
 function NetflixNavbar() {
+  const location = useLocation()
   return (
     <Nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="http://ubeytdemir.me/netflix-ui">
+        <a className="navbar-brand" href="/">
           <Image src={netflix_logo} id="logo" />
         </a>
         <button
@@ -25,18 +27,39 @@ function NetflixNavbar() {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <Link to="/">
+              <li className="nav-item">
+                <a
+                  className={
+                    location.pathname === "/" ? "nav-link active" : "nav-link"
+                  }
+                  href="/"
+                >
+                  Home
+                </a>
+              </li>
+            </Link>
+            <Link to="/tvshows">
+              <li className="nav-item">
+                <a
+                  className={
+                    location.pathname === "/tvshows"
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                  href="tvshows"
+                >
+                  Tv Shows
+                </a>
+              </li>
+            </Link>
             <li className="nav-item">
-              <a className="nav-link" href="index.html">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#1">
-                Tv Shows
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#1">
+              <a
+                className={
+                  location.pathname === "/" ? "nav-link active" : "nav-link"
+                }
+                href="/"
+              >
                 Movies
               </a>
             </li>

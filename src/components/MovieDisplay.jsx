@@ -1,16 +1,14 @@
-import { Component } from "react"
+import { useEffect, useState } from "react"
 import { Row, Col, Image, Carousel, Spinner } from "react-bootstrap"
 
-class MovieDisplay extends Component {
-  state = {
-    movies: [],
-    isLoading: true
-  }
+const MovieDisplay = (props) => {
+  const [movies, setMovies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  getMovies = async () => {
+  const getMovies = async () => {
     try {
       let response = await fetch(
-        `http://www.omdbapi.com/?apikey=265027af&s=${this.props.series}`
+        `http://www.omdbapi.com/?apikey=265027af&s=${props.series}`
       )
       if (response.ok) {
         let r = await response.json()
@@ -18,29 +16,27 @@ class MovieDisplay extends Component {
         console.log("---------------logging the Search object---------------")
         console.log(r.Search)
         let movieList = r.Search
-        this.setState({ movies: movieList, isLoading: false })
+        // this.setState({ movies: movieList, isLoading: false })
+        setMovies(movieList)
+        setIsLoading(false)
       } else {
         console.log("something went wrong")
         setTimeout(() => {
-          this.setState({
-            isLoading: false
-          })
+          setIsLoading(false)
         }, 1000)
       }
     } catch (error) {
       console.log(error)
-      this.setState({ isLoading: false })
+      setIsLoading(false)
     }
   }
 
-  componentDidMount = () => {
-    this.getMovies()
-  }
+  useEffect(() => {
+    getMovies()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.series])
 
-  // splitting the array if movies into chunks
-  //   use this function when making all the carousel cards
-
-  movieChunks = (inputArray, perChunk) => {
+  const movieChunks = (inputArray, perChunk) => {
     let result = inputArray.reduce((resultArray, item, index) => {
       const chunkIndex = Math.floor(index / perChunk)
 
@@ -55,42 +51,38 @@ class MovieDisplay extends Component {
     return result
   }
 
-  render() {
-    return (
-      <div className="movie-gallery m-2">
-        {this.state.isLoading && (
-          <Spinner animation="grow" variant="primary">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        )}
-        <Carousel indicators={false}>
-          <h5 className="text-light mt-2 mb-2 text-left">
-            {this.props.series}
-          </h5>
-          {this.movieChunks(this.state.movies, 7).map((moviesRow, index) => (
-            <Carousel.Item key={`carousel-${index}`}>
-              {this.state.isLoading && (
-                <Spinner animation="grow" variant="primary">
-                  <span className="sr-only">Loading...</span>
-                </Spinner>
-              )}
-              <div className="active d-flex inline">
-                <div className="movie-row">
-                  <Row>
-                    {moviesRow.map((movie) => (
-                      <Col key={movie.imdbID}>
-                        <Image className="movie-cover" src={movie.Poster} />
-                      </Col>
-                    ))}
-                  </Row>
-                </div>
+  return (
+    <div className="movie-gallery m-2">
+      {isLoading && (
+        <Spinner animation="grow" variant="primary">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      )}
+      <Carousel indicators={false}>
+        <h5 className="text-light mt-2 mb-2 text-left">{props.series}</h5>
+        {movieChunks(movies, 7).map((moviesRow, index) => (
+          <Carousel.Item key={`carousel-${index}`}>
+            {isLoading && (
+              <Spinner animation="grow" variant="primary">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            )}
+            <div className="active d-flex inline">
+              <div className="movie-row">
+                <Row>
+                  {moviesRow.map((movie) => (
+                    <Col key={movie.imdbID}>
+                      <Image className="movie-cover" src={movie.Poster} />
+                    </Col>
+                  ))}
+                </Row>
               </div>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </div>
-    )
-  }
+            </div>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
+  )
 }
 
 export default MovieDisplay
