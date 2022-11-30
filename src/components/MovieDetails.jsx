@@ -43,9 +43,10 @@ export default function MovieDetails() {
           <Card className="individual-card">
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
-              <div>
-                <div>{movie.Year}</div>
-                <div>{movie.Type}</div>
+              <div className="mb-3">
+                <div>Year: {movie.Year}</div>
+                <div>Cast: {movie.Actors}</div>
+                <div>Genre: {movie.Genre}</div>
               </div>
               <Button variant="primary" onClick={() => navigate(-1)}>
                 Go Back
