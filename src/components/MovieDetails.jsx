@@ -20,6 +20,7 @@ export default function MovieDetails() {
         console.log(movieDetails)
 
         setMovie(movieDetails)
+        console.log("movie ratings", movie.Ratings)
       } else {
         console.log("something went wrong")
       }
