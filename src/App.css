@@ -173,3 +173,10 @@ input[type="checkbox"] {
   transform: scale(1.5);
   margin-bottom: 10px;
 }
+
+.movie-info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  max-width: 100%;
+}

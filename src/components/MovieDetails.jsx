@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Container, Row, Col, Button, Card } from "react-bootstrap"
+import { Container, Row, Col, Button, Card, Image } from "react-bootstrap"
 
 import { useParams, useNavigate } from "react-router-dom"
 
@@ -34,19 +34,20 @@ export default function MovieDetails() {
   }, [])
   return (
     <Container>
-      <Row>
-        <Col>
-          <h1 className="text-white">Movie</h1>
-
-          <Card>
-            <Card.Img variant="top" src={movie.Poster} />
+      <h1 className="text-white">Movie</h1>
+      <Row className="movie-info">
+        <Col xs={6}>
+          <Image className="poster-image" src={movie.Poster} />
+        </Col>
+        <Col xs={6}>
+          <Card className="individual-card">
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <div>
                 <div>{movie.Year}</div>
                 <div>{movie.Type}</div>
               </div>
-              <Button variant="primary" onClick={() => navigate("-1")}>
+              <Button variant="primary" onClick={() => navigate(-1)}>
                 Go Back
               </Button>
             </Card.Body>
